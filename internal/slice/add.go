@@ -4,7 +4,7 @@ import "github.com/maxwelldu/gkit/internal/errs"
 
 func Add[T any](src []T, element T, index int) ([]T, error) {
 	length := len(src)
-	if index < 0 || index >= length {
+	if index < 0 || index > length {
 		return nil, errs.NewErrIndexOutOfRange(length, index)
 	}
 

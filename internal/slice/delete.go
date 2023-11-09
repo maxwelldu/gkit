@@ -10,10 +10,8 @@ func Delete[T any](src []T, index int) ([]T, T, error) {
 	}
 
 	res := src[index]
-	for i := index; i+1 < length; i++ {
-		src[i] = src[i+1]
-	}
-
-	src = src[:length-1]
-	return src, res, nil
+	dst := make([]T, len(src)-1, cap(src))
+	copy(dst, src[:index])
+	copy(dst[index:], src[index+1:])
+	return dst, res, nil
 }
